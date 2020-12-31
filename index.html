@@ -6,46 +6,45 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
 
     
 </head>
 <body>
-    <form action="" id="logindiv">
-        <h2>Firebase Login</h2>
-         ENTER EMAIL:
-        <input type="text" placeholder="Enter Email" id="email field"><br><br>
-         ENTER PASSWORD
-        <input type="password" placeholder="Enter password" id="psw field"><br><br>
-        <button onclick="login()">LOGIN</button>
-    </form>
+    <h1>Get data form FireBase</h1>
+        <div class="content">
 
-    <div id="userdiv">
-        <h2>WELCOME TO HOME</h2>
-    </div>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-  
+            <form id="add-cafe-form">
+              <input type="text" name="name" placeholder="Enter Name">
+              <input type="text" name="color" placeholder="Enter Color">
+              <button>Submit</button>
 
+            </form>
 
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyAV59f4O_PK3xAsU3JYniJWmeUvpFYyC94",
-    authDomain: "first-project-5ad2e.firebaseapp.com",
-    databaseURL: "https://first-project-5ad2e-default-rtdb.firebaseio.com",
-    projectId: "first-project-5ad2e",
-    storageBucket: "first-project-5ad2e.appspot.com",
-    messagingSenderId: "1060118530442",
-    appId: "1:1060118530442:web:19009ff2adc9e25ca46073",
-    measurementId: "G-TB7QS0N4BJ"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-<script src="app.js"></script>
+            <ul id="cafe-list"></ul>
+        </div>
+
+        <script>
+            // Initialize Firebase
+            
+                      // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+              apiKey: "AIzaSyAV59f4O_PK3xAsU3JYniJWmeUvpFYyC94",
+              authDomain: "first-project-5ad2e.firebaseapp.com",
+              databaseURL: "https://first-project-5ad2e-default-rtdb.firebaseio.com",
+              projectId: "first-project-5ad2e",
+              storageBucket: "first-project-5ad2e.appspot.com",
+              messagingSenderId: "1060118530442",
+              appId: "1:1060118530442:web:19009ff2adc9e25ca46073",
+              measurementId: "G-TB7QS0N4BJ"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            db.settings({ timestampsInSnapshots: true }); 
+        </script>
+        <script src="app.js"></script>
 </body>
 </html>
