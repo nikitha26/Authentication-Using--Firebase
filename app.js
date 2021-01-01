@@ -17,14 +17,12 @@ function render(doc){
    li.appendChild(cross);
 
    userdata.appendChild(li);
-
    //deleting data from firestore
    cross.addEventListener('click',(e) =>{
      e.stopPropagation();
      let id = e.target.parentElement.getAttribute('data-id');
      db.collection('registration').doc(id).delete();
      alert("Deleted Data In Firebase")
-
    })
   }
 
@@ -38,11 +36,21 @@ db.collection('registration').get().then((snapshot) =>{
 //saving data
 form.addEventListener('submit',(e) =>{
   e.preventDefault()
-  db.collection('registration').add({
-    username:form.name.value,
-    favcolor:form.color.value,
-  })
-  form.name.value = '';
-  form.color.value = '';
-  alert("Your Data Successfully Added To Firestore")
+  var x = form.name.value;
+  var y = form.color.value;
+  if(x && y){
+    db.collection('registration').add({
+      username:form.name.value,
+      favcolor:form.color.value,
+    })
+    form.name.value = '';
+    form.color.value = '';
+    alert("Your Data Successfully Added To Firestore")
+  }
+  else if(x == ""){
+    alert("Enter Both Fields")
+   }
+   else if(x||y){
+        alert("Enter Properly")
+   }
 })
