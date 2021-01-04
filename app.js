@@ -22,16 +22,17 @@ function render(doc){
      e.stopPropagation();
      let id = e.target.parentElement.getAttribute('data-id');
      db.collection('registration').doc(id).delete();
-     alert("Deleted Data In Firebase")
+    //  alert("Deleted Data In Firebase")
    })
   }
 
 //get data from firebase
-db.collection('registration').get().then((snapshot) =>{
-  snapshot.docs.forEach(doc => {
-      render(doc)
-  });
-})
+//making queries in firestore where(3 parameteres eg:.where('favcolor','==','Red'))
+// db.collection('registration').where('favcolor','==','Pink').orderBy('username').get().then((snapshot) =>{
+//   snapshot.docs.forEach(doc => {
+//       render(doc)
+//   });
+// })
 
 //saving data
 form.addEventListener('submit',(e) =>{
@@ -45,12 +46,26 @@ form.addEventListener('submit',(e) =>{
     })
     form.name.value = '';
     form.color.value = '';
-    alert("Your Data Successfully Added To Firestore")
+    // alert("Your Data Successfully Added To Firestore")
   }
-  else if(x == ""){
-    alert("Enter Both Fields")
-   }
-   else if(x||y){
-        alert("Enter Properly")
-   }
+  // else if(x == ""){
+  //   alert("Enter Both Fields")
+  //  }
+  //  else if(x||y){
+  //       alert("Enter Properly")
+  //  }
+})
+
+//real time listener
+db.collection('registration').onSnapshot(snapshot =>{
+  let changes = snapshot.docChanges();
+  changes.forEach(change =>{
+    // console.log(change.doc.data())
+    if(change.type == 'added'){
+      render(change.doc)
+    } else if(change.type == 'removed'){
+      let li = cafe-list.querySelector('[data-id=' + change.doc.id + ']')
+      cafe-list.removeChild(li)
+    }
+  })
 })
