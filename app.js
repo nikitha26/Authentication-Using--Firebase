@@ -22,7 +22,7 @@ function render(doc){
      e.stopPropagation();
      let id = e.target.parentElement.getAttribute('data-id');
      db.collection('registration').doc(id).delete();
-    //  alert("Deleted Data In Firebase")
+      alert("Deleted Data In Firebase")
    })
   }
 
@@ -46,14 +46,14 @@ form.addEventListener('submit',(e) =>{
     })
     form.name.value = '';
     form.color.value = '';
-    // alert("Your Data Successfully Added To Firestore")
+     alert("Your Data Successfully Added To Firestore")
   }
-  // else if(x == ""){
-  //   alert("Enter Both Fields")
-  //  }
-  //  else if(x||y){
-  //       alert("Enter Properly")
-  //  }
+  else if(x == ""){
+    alert("Enter Both Fields")
+   }
+   else if(x||y){
+        alert("Enter Properly")
+   }
 })
 
 //real time listener
